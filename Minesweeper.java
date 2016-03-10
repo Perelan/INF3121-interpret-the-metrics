@@ -7,7 +7,7 @@ public class Minesweeper {
 	public static void main(String[] args) {
 		rank=new Ranking();
 		mainMessage()
-		
+		sout("test");
 		;
 		while(gameCountinue());
 		System.out.println("\nThank you for playing :) Have a nice day!");
