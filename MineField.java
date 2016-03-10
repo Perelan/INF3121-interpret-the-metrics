@@ -8,7 +8,6 @@ class MineField{
 	private final int colMax = 10;
 
 	MineField(){
-
 		mines=new boolean[rowMax][colMax];
 		visible=new boolean[rowMax][colMax];
 		boom=false;
@@ -29,6 +28,7 @@ class MineField{
 			}
 		}
 	}
+	
 	private void initMap(){
 		for(int row=0;row<rowMax;row++){
 			for(int col=0;col<colMax;col++){
@@ -37,15 +37,15 @@ class MineField{
 			}
 		}
 	}
+	
 	private boolean trymove(int randomRow, int randomCol) {
 		if(mines[randomRow][randomCol]){
 			return false;
 		}
-		else{
-			mines[randomRow][randomCol]=true;
-			return true;
-		}
+		mines[randomRow][randomCol]=true;
+		return true;
 	}
+	
 	private void boom() {
 		for(int row=0;row<rowMax;row++){
 			for(int col=0;col<colMax;col++){
@@ -56,8 +56,6 @@ class MineField{
 		}
 		boom=true;
 		show();
-
-
 	}
 
 
@@ -72,36 +70,39 @@ class MineField{
 					}
 				}
 			}
+			
+			switch(count){
+				case 0:return '0';
+				case 1:return '1';
+				case 2:return '2';
+				case 3:return '3';
+				case 4:return '4';
+				case 5:return '5';
+				case 6:return '6';
+				case 7:return '7';
+				case 8:return '8';
+				default:return 'X';
+			}
+
 		}
-		else{
+		else 
+		{
 			if(boom){
 				return '-';
 			}
-			{
-
-
-				return '?';
-			}
-		}
-
-		return (count >= 0 && count <= 8) ? (char)count : 'x';
-
-		
+			return '?';
 		}
 	}
+	
 	public boolean getBoom(){
-
 		return boom;
 	}
 
-
 	public boolean legalMoveString(String input) {
 		String[] separated=input.split(" ");
-		int row;
-		int col;
+		int row, col;
+		
 		try{
-
-
 			row=Integer.parseInt(separated[0]);
 			col=Integer.parseInt(separated[1]);
 			if(row<0||col<0||row>=rowMax||col>=colMax){
@@ -115,14 +116,11 @@ class MineField{
 
 		if(legalMoveValue(row,col)){
 			return true;
-
-
 		}
 		else{
 			return false;
 		}
 	}
-
 
 	private boolean legalMoveValue(int row, int col) {
 
@@ -141,18 +139,17 @@ class MineField{
 
 		return true;
 	}
+	
 	public void show() {
-		System.out.println("\n    0 1 2 3 4 5 6 7 8 9 ");
-		System.out.println("   ---------------------");
+		System.out.println("\n    0 1 2 3 4 5 6 7 8 9 \n   ---------------------");
+		
 		for(int row=0;row<rowMax;row++){
 			System.out.print(row+" |");
 			for(int col=0;col<colMax;col++){
 				System.out.print(" "+drawChar(row,col));
-
 			}
 			System.out.println(" |");
 		}
 		System.out.println("   ---------------------");
 	}
-
 }
