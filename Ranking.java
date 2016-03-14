@@ -13,7 +13,10 @@ public class Ranking{
 		last=0;
 	}
 
-	/*This method checks if a player is entitled to enter the scoreboard*/
+	/**
+	 *This method checks if a player is entitled to enter the scoreboard
+	 * @param result The result for a player
+     */
 	public void recordName(int result) {
 		System.out.print("\n Please enter your name -");
 		Scanner in=new Scanner(System.in);
@@ -52,7 +55,10 @@ public class Ranking{
 		while(handleSort());
 	}
 
-	/*This method sorts the scoreboard based on best scores*/
+	/**
+	 * This method sorts the scoreboard based on best scores
+	 * @return boolean, true if the sorting was completed
+     */
 	private boolean handleSort(){
 		for(int i=0;i<(last-1);i++){
 			if(record[i+1]>record[i]){

@@ -1,7 +1,6 @@
 import java.util.Random;
 
 class MineField{
-
 	private boolean[][] mines,visible;
 	private boolean boom;
 	private final int rowMax = 5;
@@ -58,7 +57,12 @@ class MineField{
 		show();
 	}
 
-	/*This method will draw the map in terms of the state of each cell*/
+	/**
+	 * This method will draw the map in terms of the state of each cell
+	 * @param row input from user
+	 * @param col input from user
+     * @return char specific to each cell according to the state
+     */
 	private char drawChar(int row, int col) {
 	    count=0;
 		if(visible[row][col]){
@@ -77,7 +81,11 @@ class MineField{
 
 	}
 
-	/*This method handles the count of mines around each selected cell*/
+	/**
+	 * This method handles the count of mines around each selected cell
+	 * @param row selected row from user
+	 * @param col selected col from user
+     */
 	public void handleThis(int row, int col){
 		for(int irow=row-1;irow<=row+1;irow++){
 			for(int icol=col-1;icol<=col+1;icol++){
@@ -88,7 +96,11 @@ class MineField{
 		}
 	}
 
-	/*This method prints out number of mines around the selected cell*/
+	/**
+	 * This method prints out the number of mines around the selected cell
+	 * @param count decides which number to return
+	 * @return char value representing the number of mines around the cell
+     */
 	public char printMap(int count){
 		switch(count){
 			case 0:return '0';
@@ -109,6 +121,12 @@ class MineField{
 	}
 
 	/*This method checks if the requested move is legal*/
+
+	/**
+	 * This method checks if the requesteed move is legal
+	 * @param input input from user
+	 * @return boolean true if valid
+     */
 	public boolean legalMoveString(String input) {
 		String[] separated=input.split("\\s+");
 		int row, col;
@@ -133,7 +151,12 @@ class MineField{
 		}
 	}
 
-	/*This method is initiated from legalMoveString to validate/execute the input coordinates*/
+	/**
+	 * This method is initiated from legalMoveString to validate/execute the input coordinates
+	 * @param row input from user
+	 * @param col input from user
+     * @return true if valid
+     */
 	private boolean legalMoveValue(int row, int col) {
 		if(visible[row][col]){
 			System.out.println("You stepped in already revealed area!");
@@ -149,7 +172,9 @@ class MineField{
 		return true;
 	}
 
-	/*This method prints out the grid with the program's state*/
+	/**
+	 * This method prints out the grid with the program's state
+	 */
 	public void show() {
 		System.out.println("\n    0 1 2 3 4 5 6 7 8 9 \n   ---------------------");
 

@@ -14,7 +14,10 @@ public class Minesweeper {
 
 	}
 
-	/*This method checks both the input and the game state to end game or not*/
+	/**
+	 * This method checks both the input and the game state to end game or not
+	 * @return boolean, true if the game continues
+     */
 	private static boolean gameCountinue() {
 		while (true){
 			field.show();
