@@ -6,7 +6,7 @@ public class Ranking{
 	private String[] name;
 	private int[] record;
 	private int last;
-	
+
 	Ranking(){
 		name=new String[MAX_PEOPLE_LIMIT];
 		record=new int[MAX_PEOPLE_LIMIT];
@@ -17,7 +17,7 @@ public class Ranking{
 		System.out.print("\n Please enter your name -");
 		Scanner in=new Scanner(System.in);
 		String newName=in.nextLine();
-		
+
 		if((last==MAX_PEOPLE_LIMIT)&&record[MAX_PEOPLE_LIMIT-1]>result){
 			System.out.println("\nSorry you cannot enter top "+(MAX_PEOPLE_LIMIT)+" players");
 			return;
@@ -46,28 +46,29 @@ public class Ranking{
 		}
 		System.out.println(s);
 	}
-	
+
 	/**
-	 * This method  
+	 * This method
 	 *
 	 *
 	 */
 	private void sort(){
-		boolean unsorted=true;
-		while(unsorted){            
-			unsorted=false;
-			for(int i=0;i<(last-1);i++){
-				if(record[i+1]>record[i]){
-					int swapR=record[i];
-					record[i]=record[i+1];
-					record[i+1]=swapR;
-					
-					String swapN=name[i];
-					name[i]=name[i+1];
-					name[i+1]=swapN;
-					unsorted=true;
-				}
+		while(handleSort());
+	}
+
+	private boolean handleSort(){
+		for(int i=0;i<(last-1);i++){
+			if(record[i+1]>record[i]){
+				int swapR=record[i];
+				record[i]=record[i+1];
+				record[i+1]=swapR;
+
+				String swapN=name[i];
+				name[i]=name[i+1];
+				name[i+1]=swapN;
+				return true;
 			}
 		}
+		return false;
 	}
 }
