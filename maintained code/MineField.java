@@ -128,7 +128,7 @@ class MineField{
 	 * @return boolean true if valid
      */
 	public boolean legalMoveString(String input) {
-		String[] separated=input.split("\\s+");
+		String[] separated=input.split(" ");
 		int row, col;
 
 		try{
