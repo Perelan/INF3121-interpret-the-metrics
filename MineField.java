@@ -20,7 +20,6 @@ class MineField{
 		Random RGenerator=new Random();
 
 		while(counter2>0){
-
 			randomRow=Math.abs(RGenerator.nextInt()%rowMax);
 			randomCol=Math.abs(RGenerator.nextInt()%colMax);
 
@@ -59,13 +58,14 @@ class MineField{
 		show();
 	}
 
+	/*This method will draw the map in terms of the state of each cell*/
 	private char drawChar(int row, int col) {
 	    count=0;
 		if(visible[row][col]){
 			if(mines[row][col]) return '*';
 
 			handleThis(row, col);
-			
+
 			return printMap(count);
 		}
 		else if(boom){
@@ -77,6 +77,7 @@ class MineField{
 
 	}
 
+	/*This method handles the count of mines around each selected cell*/
 	public void handleThis(int row, int col){
 		for(int irow=row-1;irow<=row+1;irow++){
 			for(int icol=col-1;icol<=col+1;icol++){
@@ -87,6 +88,7 @@ class MineField{
 		}
 	}
 
+	/*This method prints out number of mines around the selected cell*/
 	public char printMap(int count){
 		switch(count){
 			case 0:return '0';
@@ -106,8 +108,9 @@ class MineField{
 		return boom;
 	}
 
+	/*This method checks if the requested move is legal*/
 	public boolean legalMoveString(String input) {
-		String[] separated=input.split(" ");
+		String[] separated=input.split("\\s+");
 		int row, col;
 
 		try{
@@ -130,24 +133,23 @@ class MineField{
 		}
 	}
 
+	/*This method is initiated from legalMoveString to validate/execute the input coordinates*/
 	private boolean legalMoveValue(int row, int col) {
-
 		if(visible[row][col]){
 			System.out.println("You stepped in already revealed area!");
 			return false;
 		}
 		else{
-			visible[row][col]=true;
+				visible[row][col]=true;
 		}
-
 		if(mines[row][col]){
 			boom();
 			return false;
 		}
-
 		return true;
 	}
 
+	/*This method prints out the grid with the program's state*/
 	public void show() {
 		System.out.println("\n    0 1 2 3 4 5 6 7 8 9 \n   ---------------------");
 
